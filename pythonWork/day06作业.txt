@@ -1,0 +1,76 @@
+1、实现功能：
+列表为：['Iphone8',6888],['MacPro',14800],['小米6',2499],['Coffee',31],['Book',80],['Nike Shoes',799]
+实现一个类似购物车的语句，用户循环输入编号可以将列表内的商品储存到一个新的列表里面，当用户输入'q'时退出循环
+
+实现代码如下：
+
+products = [['Iphone8',6888],['MacPro',14800],['小米6',2499],['Coffee',31],['Book',80],['Nike Shoes',799]]
+shopping_cart = []
+while True:
+    print ('-------------商品列表--------------')
+    for index,i in enumerate(products):
+        print ('%s.%s    %s'%(index,i[0],i[1]))
+    choice = input('please input your numbers:')
+    if choice.isdigit():
+        choice = int(choice)
+        shopping_cart.append(products[choice])
+    elif choice == 'q':
+        print ('-----------------您以购买如下商品------------')
+        for index,i in enumerate(shopping_cart):
+            print ('%s.%s    %s'%(index,i[0],i[1]))
+        break
+同时可以添加一个标志位，当用户输入'q'的时候标志位改变while的判断条件，使循环退出
+
+具体代码如下：
+
+
+products = [['Iphone8',6888],['MacPro',14800],['小米6',2499],['Coffee',31],['Book',80],['Nike Shoes',799]]
+shopping_cart = []
+run_flag = True
+while run_flag:
+    print ('-------------商品列表--------------')
+    for index,i in enumerate(products):
+        print ('%s.%s    %s'%(index,i[0],i[1]))
+    choice = input('please input your numbers:')
+    if choice.isdigit():
+        choice = int(choice)
+        shopping_cart.append(products[choice])
+    elif choice == 'q':
+        print ('-----------------您以购买如下商品------------')
+        for index,i in enumerate(shopping_cart):
+            print ('%s.%s    %s'%(index,i[0],i[1]))
+        run_flag = False
+
+
+
+2、制作4位字符组成随机验证码4位字符组成，不区分大小写
+	流程：
+	- 用户执行程序
+	- 给用户显示需要输入的验证码
+	- 用户输入的值
+	用户输入的值和显示的值相同时实现正确信息;否则继续生成随机验证码继续等待用户输入
+	生成随机验证码代码示例：
+	# (print(chr(97))：输出结果为a)
+
+3、给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出各位数字。
+
+4、使用字典，编写景区一个景点查询工具，
+	要求：
+	菜单分为省/市/景点三级菜单
+	用户必须先输入省份查看全部地市信息
+	用户输入地市可以查看本地的所有景点信息
+	travel_map_dict = {
+		    "上海": {"崇明": ["崇明1", "崇明2", "崇明3", "崇明4"],
+			   "宝山": ["宝山1", "宝山2", "宝山3", "宝山4"],
+			   "奉贤": ["奉贤1", "奉贤2", "奉贤3", "奉贤4"]},
+
+		    "北京": {"昌平": ["昌平1", "昌平2", "昌平3", "昌平4"],
+			   "朝阳": ["朝阳1", "朝阳2", "朝阳3", "朝阳4"],
+			   "海淀": ["海淀1", "海淀2", "海淀3", "海淀4"]}}
+
+5、编写代码，实现双色球彩票一键选号功能：
+		红球6个，号码在1—33之间，按从小到大排列
+		篮球一个，排列在红球后面
+		参考格式：
+		{‘红球’: [05,15,20,22,31,33],’蓝球’：[10,]}
+		或你喜欢的任意格式
