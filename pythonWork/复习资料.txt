@@ -1,0 +1,180 @@
+一、python2 和python3的区别:
+         python2                      python3
+     1.print ""                        print()
+     2.<>                                !=
+     3.python3有with...as   python2没有
+     5.raw_input                input
+     6super要传参数             super不用传参数
+     7.有long型                       没有   等等。。。。。
+    
+
+     
+ 二、面向对象的访问限制
+      1.__属性名称  变为私有属性，确保了外部代码不能随意修改对象内部的状态  get，set方法可以从外部获取
+      2.__slots__  设置类内属性运行时不可再添加
+      
+      
+三、列表去除重复元素
+      方法一   内置set（）
+       a = [1,2,3,4,5,6,1,2,3,4]
+       a = set(a)                      转换为元组去除重复元素，
+       a = list(a)                       再转换回列表模式
+       方法二   遍历元素
+        list1 = [1, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9]
+        list2=[]            新建列表
+        for i in list1:
+        if not i in list2:    不重复添加到新列表
+        list2.append(i)
+        
+        
+ 四、全局变量和局部变量的区别
+     1.在函数外面定义的变量称为：全局变量
+	2.全局变量能够在所有的函数中被访问
+	3.如果在函数中修改全局变量，那么需要使用global关键字进行声明，否则出错
+	4.如果出现同名的现象，先到局部找---》全局-----》报错，这个被称为：就近原则
+
+	他们的本质的区别：
+	     在于作用域
+
+          
+total = 0 # 这是一个全局变量
+def sum( arg1, arg2 ):
+    #返回2个参数的和."
+    total = arg1 + arg2            # total在这里是局部变量.
+    print ("函数内是局部变量 : ", total)
+    return total
+ 
+#调用sum函数
+sum( 10, 20 )
+print ("函数外是全局变量 : ", total)
+          
+          
+ 五、文件重命名
+      1.文件：改名： os.rename（） 移除：os.remove() 查询：os.path.exists(),os.path.isfile()
+      2.文件夹: 改名：os.rename()   移除：os.removedis()  查询：os.path.exists(),os.path.isdir()  创建：os.mkdir()
+      
+      
+ 六、创建文件
+        os模式创建
+       1.创建多级目录：os.makedirs（r“c：\python\test”）
+       2.创建单个目录：os.mkdir（“test”）
+       
+       file = open("aaa.txt","w")  如果没有此文件，会在同级目录下创建一个
+       
+       
+ 七、异常里如何捕获多个异常
+        1.多个异常处理
+            try:
+			　　正常的操作
+			except A:
+			　　发生异常A,执行这块代码
+			except B:
+			　　发生异常B,执行这块代码
+			except:
+			　　发生其它异常,执行这块代码
+			else:
+			　　如果没有异常,执行这块代码
+			
+			2.一次捕获多个异常
+			try:                                                             
+
+			　　正常的操作
+			except(A,B):
+			　　发生异常A和B,执行这块代码
+			
+			
+八、字典内部排序
+		  import operator;    
+		  # 字典中排序
+		  def sortDict():
+		      dic={'a':1,'f':2,'c':3,'h':0};
+		      # 函数原型：sorted(dic,value,reverse)
+		     # 按字典中的键进行升序排序
+		      print(sorted(dic.items(),key=operator.itemgetter(0),reverse=False));  0是键
+		      # 按字典中的键进行降序排序
+		    print(sorted(dic.items(),key=operator.itemgetter(0),reverse=True));
+		     # 按字典中的值进行升序排序
+		     print( sorted(dic.items(),key=operator.itemgetter(1),reverse=False));  1是值
+		     # 按字典中的值进行降序排序
+		     print(sorted(dic.items(),key=operator.itemgetter(1),reverse=True));
+			   
+       
+九、py2，py3经典类，新式类
+       class Car(object): 是新式类
+       class Cat: 是经典类
+       
+
+十、不可变的类型：
+        元组tuple   字符串string   数字型number
+        
+        
+ 十一、实例属性，类属性
+	   class cat:
+			name = 'tom'  # 类属性
+			def __init__(self,age):
+				self.age = age    #实例属性
+			def set_name_age(self):
+				self.age = 2         #实例属性在类内部修改
+				cat.name = 'peter'  #类属性在类内部修改
+
+
+十二、实例方法，类方法，静态方法的区别
+  class cat：
+		 def text(self):   #实例方法
+			print("object")
+		@classmethod        #类方法
+		def text2(cls):
+			print("class")
+		@staticmethod      #静态方法
+		def text3():
+			print("static")
+			
+t = cat(8)  #  t  实例对象
+t.text()    #通过实例调用实例方法
+cat.text2()  #类方法的调用
+cat.text3()  #  静态方法
+    
+实例方法
+    定义：第一个参数必须是实例对象，该参数名一般约定为“self”，通过它来传递实例的属性和方法（也可以传类的属性和方法）；
+    调用：只能由实例对象调用。
+    
+类方法 
+定义：使用装饰器@classmethod。第一个参数必须是当前类对象，该参数名一般约定为“cls”，通过它来传递类的属性和方法（不能传实例的属性和方法）；
+    调用：实例对象和类对象都可以调用。
+    
+静态方法
+  定义：使用装饰器@staticmethod。参数随意，没有“self”和“cls”参数，但是方法体中不能使用类或实例的任何属性和方法；
+  调用：实例对象和类对象都可以调用。
+  
+  
+  十三、装饰起中ctime
+       from time import ctime, sleep
+	
+	无参数的函数
+	
+	
+	def timeFun(func):
+	    def wrapped():
+	        print("%s called at %s" % (func.__name__, ctime()))
+	        func()
+	
+	    return wrapped
+	
+	
+	@timeFun
+	def foo():
+	    print("i am foo")
+	
+	
+	# foo()
+	# sleep(2)
+	# foo()
+	
+	f = timeFun(foo)
+	f()
+
+
+
+
+
+d  a  c a c b 
