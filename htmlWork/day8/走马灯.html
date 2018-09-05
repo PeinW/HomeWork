@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#text{
+				width: 500px;
+				height: 200px;
+				background: #ccc;
+				text-align: center;
+				font-size: 20px;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div id="text">python1806雄起</div>
+		<div>
+			<input type="button" size="100" value="开始" onclick="i=setInterval(run,100)"/>
+			<input type="button" size="100" value="结束" onclick="clearInterval(i)"/>
+		</div>
+		<script type="text/javascript">
+			function run(){
+				//1.先获取div中的内容  获取到的类型是string 
+				var str = document.getElementById('text').innerHTML;
+				//console.log(str);
+				//2.将字符串转化成数组
+				var arr = str.split('');
+				//console.log(typeof arr);
+				//3.将数组的第一个元素弹出来   
+				var firstarr = arr.shift();
+				//4.将上面拿到的元素放到数组尾部   
+				arr.push(firstarr);
+				//5.将数组转成字符串 重新放回div
+				str = arr.join('');
+				//console.log(typeof str);
+				document.getElementById('text').innerHTML = str;
+				//6.间歇调用 让字体滚动起来  
+			}
+		</script>
+	</body>
+</html>

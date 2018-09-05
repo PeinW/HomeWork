@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮播</title>
+	<style type="text/css">
+		body,div,ul,li{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style-type: none;
+		}
+		
+		body{
+			background: #cornsilk;
+			text-align: center;
+			font-size: 12px;
+		}
+		/*设置框框*/
+		#box{     
+			position: relative;
+			width: 502px;
+			height: 182px;
+			border-radius: 5px;
+			border:8px solid #ccc;
+			margin: 10px auto;
+		}
+		/*设置图片列表的外框*/
+		#box .list{
+			position: relative;
+			width: 500px;
+			height: 180px;
+			overflow: hidden;
+			border: 1px solid #ccc;
+		}
+		/*设置通用图片初始样式，overflow隐藏超出部分，opacity*/
+		#box .list li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 500px;
+			height: 180px;
+			overflow: hidden;
+			opacity: 0;
+			border: 1px solid #ccc;
+		}
+		/*设置显示的图片的样式opacity: 1; 透明度为1*/
+		#box .list li.current{
+			opacity: 1;
+		}
+		/*设置按钮的位子*/
+		#box .count{
+			position: absolute;
+			right: 0;
+			bottom: 5px;
+		}
+		/*设置普遍按钮的样式*/
+		#box .count li{
+			float: left;
+			width: 20px;
+			height: 20px;
+			background: orange;
+			border-radius: 20px;
+			opacity: 0.7;
+			margin-right: 5px;
+			color: #fff;
+			line-height: 20px;
+			cursor: pointer;
+		}
+		/*设置选中按钮的样式*/
+		#box .count li.current{
+			background: orangered;
+			font-weight: 700;
+			opacity: 0.9;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul class="list">
+			<li style="opacity: 1;" class="current"><img src="img/01.jpg" width="500" height="180"></li>
+			<li style="opacity: 0;" ><img src="img/02.jpg" width="500" height="180"></li>
+			<li style="opacity: 0;"><img src="img/03.jpg" width="500" height="180"></li>
+			<li style="opacity: 0;"><img src="img/04.jpg" width="500" height="180"></li>
+			<li style="opacity: 0;"><img src="img/05.jpg" width="500" height="180" ></li>
+		</ul>
+
+		<ul class="count">
+			<li class="current">1</li>
+			<li >2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		//1.获取相应的元素   
+		var box = document.getElementById('box');
+		var uls = document.getElementsByTagName('ul');
+		var imgs = uls[0].getElementsByTagName('li');
+		var btn = uls[1].getElementsByTagName('li');
+		console.log(box);
+		console.log(uls);
+		console.log(imgs);
+		console.log(btn);
+		
+		var i=index=0;//i for用到  index 中间量  提前命名 
+		var play = null;
+		
+		//图片按钮的显示方法  
+		function show(num){
+			for (i=0;i<btn.length;i++) {
+				btn[i].className=''; //让所有的按钮 取消class 样式
+			}
+			btn[num].className='current'; //选中的按钮 特别样式
+			for (i=0;i<imgs.length;i++) {
+				imgs[i].style.opacity = 0;
+				//让所有的图片 透明
+			}
+			imgs[num].style.opacity=1; //选中的图片不透明  
+		}
+		//自动轮播方法    
+		function autoplay(){
+			play = setInterval(function(){
+				index++;  //index 作为参数 传递给 show方法 表示告诉 应该让哪个图片 显示 按钮 突出  
+				if(index >= imgs.length){
+					index=0;   //如果到最后  下一张 应该从头开始   
+				}
+				show(index);  //调用上面的show 方法    将参数传递过去 
+			},1000);  //1秒轮播一次 
+		}
+		
+		autoplay();  //打开页面 自动轮播
+		
+		//鼠标移入图片  停止轮播  
+		box.onmouseover = function(){
+			clearInterval(play);
+		}
+		//移出图片 开始轮播  
+		box.onmouseout = function(){
+			autoplay();
+		}
+		//循环给每个按钮绑定一个鼠标移入事件  放到哪个按钮显示对应的图片
+		for (i=0;i<btn.length;i++) {
+			btn[i].python=i;
+			btn[i].onmouseover = function(){
+				show(this.python);
+				index = this.python;
+				clearInterval(play);
+			}
+		}
+	</script>
+</body>
+</html>

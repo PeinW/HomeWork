@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>ÉÁË¸µÄÐÇ¿Õ</title>
+<style type="text/css">
+	body{
+		background-color:black;
+		
+	}
+	
+	
+</style>
+<script type="text/javascript">
+	var k=1;
+	function xing(){
+		var x=Math.floor(Math.random()*1024);
+		var y=Math.floor(Math.random()*768);
+		document.getElementById("xingkong").innerHTML="<div style='position:absolute;left:"+x+";top:"+y+";z-index:"+k+"'><img src='xing.gif' width=30px height=30px/></div>";
+		x=Math.floor(Math.random()*1024);
+		y=Math.floor(Math.random()*768);
+		document.getElementById("xingkong1").innerHTML="<div style='position:absolute;left:"+x+";top:"+y+";z-index:"+k+"'><img src='xing.gif' width=30px height=30px/></div>";
+		x=Math.floor(Math.random()*1024);
+		y=Math.floor(Math.random()*768);
+		document.getElementById("xingkong2").innerHTML="<div style='position:absolute;left:"+x+";top:"+y+";z-index:"+k+"'><img src='xing.gif' width=30px height=30px/></div>";
+		x=Math.floor(Math.random()*1024);
+		y=Math.floor(Math.random()*768);
+		document.getElementById("xingkong3").innerHTML="<div style='position:absolute;left:"+x+";top:"+y+";z-index:"+k+"'><img src='xing.gif' width=30px height=30px/></div>";
+		x=Math.floor(Math.random()*1024);
+		y=Math.floor(Math.random()*768);
+		document.getElementById("xingkong4").innerHTML="<div style='position:absolute;left:"+x+";top:"+y+";z-index:"+k+"'><img src='xing.gif' width=30px height=30px/></div>";
+		k=k+1;
+		setTimeout("xing()",500);
+	}
+</script>
+</head>
+
+<body onLoad="xing()">
+
+<div  id="xingkong"></div>
+<div id="xingkong1"></div>
+<div id="xingkong2"></div>
+<div id="xingkong3"></div>
+<div id="xingkong4"></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>HTML DOM</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="dom.js"></script>
+	</head>
+	<body>
+		<!-- html注释 -->
+		<h2 style="color:red">使用HTML的DOM操作来操作HTML标签</h2>
+		<table id="tid" width="400" border="1">
+		<thead>
+			<tr>
+				<th>Id号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="mytable">
+			<tr>
+				<td>1001</td>
+				<td>张三</td>
+				<td>20</td>
+				<td>男</td>
+				<td><button onclick="doDel(this)">删除</button></td>
+			</tr><tr>
+				<td>1002</td>
+				<td>李四</td>
+				<td>20</td>
+				<td>男</td>
+				<td><button onclick="doDel(this)">删除</button></td>
+			</tr><tr>
+				<td>1003</td>
+				<td>王五</td>
+				<td>20</td>
+				<td>男</td>
+				<td><button onclick="doDel(this)">删除</button></td>
+			</tr><tr>
+				<td>1004</td>
+				<td>赵六</td>
+				<td>20</td>
+				<td>男</td>
+				<td><button onclick="doDel(this)">删除</button></td>
+			</tr><tr>
+				<td>1005</td>
+				<td>田七</td>
+				<td>20</td>
+				<td>男</td>
+				<td><button onclick="doDel(this)">删除</button></td>
+				</tr>
+		</tbody>
+		</table>
+		
+		<br/><br/>
+		<form action="a.py" onsubmit="return doAdd(this);">
+			学号:<input type="text" name="haha" /> <br/><br/>
+			姓名:<input type="text" name="name" /> <br/><br/>
+			年龄:<input type="text" name="age" /> <br/><br/>
+			性别:<input type="text" name="sex" /> <br/><br/>
+			<input type="submit" value="添加"/>
+		</form>
+	</body>
+</html>
+

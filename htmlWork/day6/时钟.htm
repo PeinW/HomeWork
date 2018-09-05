@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>ʱ������</title>
+<meta charset="UTF-8"/>
+<meta http-equiv="refresh" content="1"/>
+<style type="text/css">
+
+	#con{
+		color:white;
+		font-family:"����";
+		font-size:20px;
+		background-color:black;
+		width:300px;
+		height:50px;
+		float:right;
+		margin-top:50px;
+	}
+</style>
+<script type="text/javascript">
+	function time(){
+	var x=new Date();
+	var year=x.getFullYear();
+	var month=x.getMonth();
+	var day=x.getDate();
+	var hour=x.getHours();
+	var minute=x.getMinutes();
+	var second=x.getSeconds();
+	if (minute<10){
+		minute="0"+minute;
+	}
+	if (second<10){
+		second="0"+second;
+	}
+	document.getElementById("con").innerHTML="<center><p class='c'>"+year+"年"+month+"月"+day+"日"+hour+"时"+minute+"分"+second+"秒"+"</p></center>";
+	}
+</script>
+</head>
+<body onLoad="time()">
+<div id="con">
+</div>
+</body>
+</html>

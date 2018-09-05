@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js选项卡切换代码</title>
+
+</head>
+
+<body>
+
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+
+#cen_right_top{width:720px;margin:40px auto 0 auto;}
+#cen_right_top .active{background:url(images/qiehuan.jpg) no-repeat;color:#F3F3F3;}
+#cen_right_top h3{
+		line-height:35px;
+		text-align:center;
+		float:left;
+		height:35px;
+		width:182px;
+		margin::0px;
+		padding:0px;
+		background-color:#F3F3F3;
+		font-size:14px;
+		color:#333333;
+		font-weight:lighter;
+		cursor:pointer;
+	}
+#cen_right_top div{
+		font-size:14px;
+		display:none;
+		clear:both;
+		height:100px;
+		padding:20px 0px 0px 20px;
+		border-top-width:medium;
+		border-top-style:solid;border-top-color:#A0603D;
+	}
+</style>
+<!-- 初始页面  第一个选项卡被选中  第一个div 显示  其它内容隐藏 -->
+<div id="cen_right_top">
+	<h3 class="active">限时抢购</h3> 
+	<h3 >新品尝鲜</h3>
+	<h3>茗茶热卖</h3>
+	<div style="display:block">限时抢购的内容</div>
+	<div style="display:none">新品尝鲜的内容</div>
+	<div style="display:none">茗茶热卖的内容</div>
+</div>
+	<script type="text/javascript">
+		//1.先获取元素
+		var aTab = document.getElementById('cen_right_top');   
+		var aH3 = aTab.getElementsByTagName('h3');
+		var aDiv = aTab.getElementsByTagName('div');
+		//给每一个h3 添加一个鼠标点击 
+		for (var i = 0; i < aH3.length; i++) {
+			aH3[i].index = i; //0  1 2
+			//这一步就是给每个选项卡编号
+			//点击的时候是没有规律可言 不会从大到小点击 也不会从小到大 
+			//就像抽奖 如果你不写几等奖 不能保证第一个人就是一等奖 所以为了让用户知道自己抽了几等奖 在上面标号
+			//当用户点击哪个选项卡 直到该选项卡的号码  
+			//然乎将该号码交给 对应的div 
+			aH3[i].onmouseover = function(){
+				for (var i = 0; i < aH3.length; i++) {
+					//从第一个选项卡切换到另外一个选项卡 
+					//首先将所有的class样式移除
+					//将所有的内容隐藏  
+					aH3[i].className = '';
+					aDiv[i].style.display = "none";
+				}
+				this.className = "active";
+				console.log(this.index);
+				//鼠标点击哪一个选项卡 让哪一个加上 class样式   
+				//让对应的div 内容显示
+				aDiv[this.index].style.display = "block";
+			}
+		}
+		//选中 h3的时候  先给他加上class样式   
+		//让对应的div 显示   其它div 隐藏掉  
+	</script>
+</body>
+</html>
